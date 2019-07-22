@@ -1,9 +1,10 @@
-﻿using System;
+﻿using RolePlayingGame.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace RolePlayingGame {
-    class Player : Interfaces.IActor {
+    public class Player : IActor {
 
         private int _currentHealth;
         private int _maximumHealth;
@@ -12,6 +13,11 @@ namespace RolePlayingGame {
         public Player(int maxHealth) {
             _maximumHealth = maxHealth;
             _currentHealth = maxHealth;
+        }
+
+        public Player(int currentHealth, int maxHealth) {
+            _maximumHealth = maxHealth;
+            _currentHealth = currentHealth;
         }
 
         public int maxHealth {
