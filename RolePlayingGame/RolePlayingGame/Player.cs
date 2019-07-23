@@ -6,32 +6,32 @@ using System.Text;
 namespace RolePlayingGame {
     public class Player : IActor {
 
-        private int _currentHealth;
-        private int _maximumHealth;
+        private Dictionary<string, int> stats = new Dictionary<string, int>()
+        {
+            { "Strength", 8 },
+            { "Constitution", 8 },
+            { "Dexterity", 8 },
+            { "Intelligence", 8 },
+            { "Wisdom", 8 },
+            { "Charisma", 8 }
+        };
+
         private int _damage;
-        Enemy Enemy = new Enemy(10);
-        
+
         public Player(int maxHealth) {
-            _maximumHealth = maxHealth;
-            _currentHealth = maxHealth;
+            MaximumHealth = maxHealth;
+            CurrentHealth = maxHealth;
             _damage = 1;
         }
 
         public Player(int currentHealth, int maxHealth) {
-            _maximumHealth = maxHealth;
-            _currentHealth = currentHealth;
+            MaximumHealth = maxHealth;
+            CurrentHealth = currentHealth;
             _damage = 1;
         }
 
-        public int maxHealth {
-            get { return _maximumHealth; }
-            set { _maximumHealth = value; }
-        }
-
-        public int currentHealth {
-            get { return _currentHealth; }
-            set { _currentHealth = value; }
-        }
+        public int MaximumHealth { get; private set; }
+        public int CurrentHealth { get; private set; }
 
         public int damageDealt {
             get { return _damage; }
@@ -39,20 +39,26 @@ namespace RolePlayingGame {
         }
 
         public void TakeDamage(int damage) {
-            if ((currentHealth - damage) <= 0) {
-                currentHealth = 0;
+            if ((CurrentHealth - damage) <= 0) {
+                CurrentHealth = 0;
             }
             else {
-                currentHealth -= damage;
+                CurrentHealth -= damage;
             }
         }
 
         public void Heal(int healing) {
-            if ((currentHealth + healing) >= maxHealth) {
-                currentHealth = maxHealth;
+            if ((CurrentHealth + healing) >= MaximumHealth) {
+                CurrentHealth = MaximumHealth;
             } 
             else {
-                currentHealth += healing;
+                CurrentHealth += healing;
+            }
+        }
+
+        public void ChangeStat(string statName, int statNumber) {
+            if (stats.ContainsKey(statName)) { 
+                stats[statName] = statNumber;
             }
         }
     }
