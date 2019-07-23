@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RolePlayingGame.Interfaces
 {
-    interface IItem
+    public interface IItem
     {
         string ItemName { get; }
         string Description { get; }

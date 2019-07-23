@@ -6,22 +6,15 @@ using System.Text;
 namespace RolePlayingGame {
     public class Player : IActor {
 
-        private Dictionary<string, int> stats = new Dictionary<string, int>()
-        {
-            { "Strength", 8 },
-            { "Constitution", 8 },
-            { "Dexterity", 8 },
-            { "Intelligence", 8 },
-            { "Wisdom", 8 },
-            { "Charisma", 8 }
-        };
-
         private int _damage;
+        public int MaximumHealth { get; private set; }
+        public int CurrentHealth { get; private set; }
+        public Weapon WeaponItem { get; private set; }
 
-        public Player(int maxHealth) {
+        public Player(int maxHealth, Weapon weapon) {
             MaximumHealth = maxHealth;
             CurrentHealth = maxHealth;
-            _damage = 1;
+            WeaponItem = weapon;
         }
 
         public Player(int currentHealth, int maxHealth) {
@@ -30,13 +23,15 @@ namespace RolePlayingGame {
             _damage = 1;
         }
 
-        public int MaximumHealth { get; private set; }
-        public int CurrentHealth { get; private set; }
-
-        public int damageDealt {
-            get { return _damage; }
-            set { _damage = value; }
-        }
+        public Dictionary<string, int> stats = new Dictionary<string, int>()
+        {
+            { "Strength", 8 },
+            { "Constitution", 8 },
+            { "Dexterity", 8 },
+            { "Intelligence", 8 },
+            { "Wisdom", 8 },
+            { "Charisma", 8 }
+        };
 
         public void TakeDamage(int damage) {
             if ((CurrentHealth - damage) <= 0) {
@@ -60,6 +55,13 @@ namespace RolePlayingGame {
             if (stats.ContainsKey(statName)) { 
                 stats[statName] = statNumber;
             }
+        }
+
+        public int DoDamage() {
+            if (WeaponItem != null) {
+                return stats["Strength"] + WeaponItem.ProficiencyBonus;
+            }
+            return stats["Strength"];
         }
     }
 }
