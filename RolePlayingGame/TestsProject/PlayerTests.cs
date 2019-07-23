@@ -2,7 +2,7 @@ using NUnit.Framework;
 using RolePlayingGame;
 
 namespace Tests {
-    public class PlayerFullHealthTests {
+    public class PlayerTests {
         Player player;
 
         [SetUp]
