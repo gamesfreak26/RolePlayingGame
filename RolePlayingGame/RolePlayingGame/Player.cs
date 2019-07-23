@@ -40,7 +40,7 @@ namespace RolePlayingGame {
 
         public void Heal(int healing) {
             if ((currentHealth + healing) >= maxHealth) {
-                currentHealth = 10;
+                currentHealth = maxHealth;
             } 
             else {
                 currentHealth += healing;
