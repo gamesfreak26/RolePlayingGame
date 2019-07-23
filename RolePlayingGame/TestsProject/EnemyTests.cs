@@ -15,25 +15,25 @@ namespace TestsProject
         [Test]
         public void EnemyTakesDamage() {
             Enemy.TakeDamage(1);
-            Assert.AreEqual(8, Enemy.currentHealth);
+            Assert.AreEqual(8, Enemy.CurrentHealth);
         }
 
         [Test]
         public void EnemyTakesFatalDamage() {
             Enemy.TakeDamage(20);
-            Assert.AreEqual(0, Enemy.currentHealth);
+            Assert.AreEqual(0, Enemy.CurrentHealth);
         }
 
         [Test]
         public void EnemyHealsDamage() {
             Enemy.Heal(1);
-            Assert.AreEqual(10, Enemy.currentHealth);
+            Assert.AreEqual(10, Enemy.CurrentHealth);
         }
 
         [Test]
         public void EnemyHealsOverMaxHealth() {
             Enemy.Heal(20);
-            Assert.AreEqual(10, Enemy.currentHealth);
+            Assert.AreEqual(10, Enemy.CurrentHealth);
         }
     }
 }
