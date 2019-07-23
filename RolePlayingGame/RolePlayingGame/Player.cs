@@ -8,15 +8,19 @@ namespace RolePlayingGame {
 
         private int _currentHealth;
         private int _maximumHealth;
+        private int _damage;
+        Enemy Enemy = new Enemy(10);
         
         public Player(int maxHealth) {
             _maximumHealth = maxHealth;
             _currentHealth = maxHealth;
+            _damage = 1;
         }
 
         public Player(int currentHealth, int maxHealth) {
             _maximumHealth = maxHealth;
             _currentHealth = currentHealth;
+            _damage = 1;
         }
 
         public int maxHealth {
@@ -27,6 +31,11 @@ namespace RolePlayingGame {
         public int currentHealth {
             get { return _currentHealth; }
             set { _currentHealth = value; }
+        }
+
+        public int damageDealt {
+            get { return _damage; }
+            set { _damage = value; }
         }
 
         public void TakeDamage(int damage) {
@@ -45,10 +54,6 @@ namespace RolePlayingGame {
             else {
                 currentHealth += healing;
             }
-        }
-
-        public void DoDamage() {
-
         }
     }
 }

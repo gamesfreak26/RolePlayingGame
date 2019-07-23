@@ -5,7 +5,7 @@ using RolePlayingGame.Interfaces;
 
 namespace RolePlayingGame
 {
-    class Enemy : IActor
+    public class Enemy : IActor
     {
         private int _currentHealth;
         private int _maximumHealth;
