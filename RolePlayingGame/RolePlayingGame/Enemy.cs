@@ -5,25 +5,21 @@ using RolePlayingGame.Interfaces;
 
 namespace RolePlayingGame
 {
-    class Enemy : IActor
+    public class Enemy : IActor
     {
-        private int _currentHealth;
         private int _maximumHealth;
 
         public Enemy(int currentHealth, int maxHealth) {
-            _currentHealth = currentHealth;
+            CurrentHealth = currentHealth;
             _maximumHealth = maxHealth;
         }
 
         public Enemy(int maxHealth) {
-            _currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
             _maximumHealth = maxHealth;
         }
 
-        public int currentHealth {
-            get { return _currentHealth; }
-            set { _currentHealth = value; }
-        }
+        public int CurrentHealth { get; set; }
 
         public int maxHealth {
             get { return _maximumHealth; }
@@ -31,20 +27,20 @@ namespace RolePlayingGame
         }
 
         public void Heal(int healing) {
-            if ((currentHealth + healing) >= maxHealth) {
-                currentHealth = maxHealth;
+            if ((CurrentHealth + healing) >= maxHealth) {
+                CurrentHealth = maxHealth;
             }
             else {
-                currentHealth += healing;
+                CurrentHealth += healing;
             }
         }
 
         public void TakeDamage(int damage) {
-            if ((currentHealth - damage) <= 0) {
-                currentHealth = 0;
+            if ((CurrentHealth - damage) <= 0) {
+                CurrentHealth = 0;
             }
             else {
-                currentHealth -= damage;
+                CurrentHealth -= damage;
             }
         }
     }
