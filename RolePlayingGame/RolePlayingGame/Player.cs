@@ -14,13 +14,17 @@ namespace RolePlayingGame {
         public Player(int maxHealth, Weapon weapon) {
             MaximumHealth = maxHealth;
             CurrentHealth = maxHealth;
+        }
+        
+        public Player(int currentHealth, int maxHealth, Weapon weapon) {
+            MaximumHealth = maxHealth;
+            CurrentHealth = currentHealth;
             WeaponItem = weapon;
         }
 
         public Player(int currentHealth, int maxHealth) {
             MaximumHealth = maxHealth;
             CurrentHealth = currentHealth;
-            _damage = 1;
         }
 
         public Dictionary<string, int> stats = new Dictionary<string, int>()
