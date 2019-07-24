@@ -6,7 +6,6 @@ using System.Text;
 namespace RolePlayingGame {
     public class Player : IActor {
 
-        private int _damage;
         public int MaximumHealth { get; private set; }
         public int CurrentHealth { get; private set; }
         public Weapon WeaponItem { get; private set; }
