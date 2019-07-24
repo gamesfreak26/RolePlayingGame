@@ -6,9 +6,6 @@ using System.Text;
 namespace RolePlayingGame {
     public class Player : IActor {
 
-        private int _currentHealth;
-        private int _maximumHealth;
-        private int _damage;
         Enemy Enemy = new Enemy(10);
         
         public Player(int maxHealth) {
@@ -16,11 +13,11 @@ namespace RolePlayingGame {
             _currentHealth = maxHealth;
             _damage = 1;
         }
-
-        public Player(int currentHealth, int maxHealth) {
+        
+        public Player(int currentHealth, int maxHealth, Weapon weapon) {
             _maximumHealth = maxHealth;
             _currentHealth = currentHealth;
-            _damage = 1;
+            WeaponItem = weapon;
         }
 
         public int maxHealth {
