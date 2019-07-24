@@ -13,6 +13,7 @@ namespace RolePlayingGame {
         public Player(int maxHealth, Weapon weapon) {
             MaximumHealth = maxHealth;
             CurrentHealth = maxHealth;
+            WeaponItem = weapon;
         }
         
         public Player(int currentHealth, int maxHealth, Weapon weapon) {
