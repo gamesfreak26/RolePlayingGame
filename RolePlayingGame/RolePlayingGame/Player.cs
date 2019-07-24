@@ -6,12 +6,13 @@ using System.Text;
 namespace RolePlayingGame {
     public class Player : IActor {
 
-        Enemy Enemy = new Enemy(10);
-        
-        public Player(int maxHealth) {
-            _maximumHealth = maxHealth;
-            _currentHealth = maxHealth;
-            _damage = 1;
+        public int MaximumHealth { get; private set; }
+        public int CurrentHealth { get; private set; }
+        public Weapon WeaponItem { get; private set; }
+
+        public Player(int maxHealth, Weapon weapon) {
+            MaximumHealth = maxHealth;
+            CurrentHealth = maxHealth;
         }
         
         public Player(int currentHealth, int maxHealth, Weapon weapon) {
@@ -20,37 +21,51 @@ namespace RolePlayingGame {
             WeaponItem = weapon;
         }
 
-        public int maxHealth {
-            get { return _maximumHealth; }
-            set { _maximumHealth = value; }
+        public Player(int currentHealth, int maxHealth) {
+            MaximumHealth = maxHealth;
+            CurrentHealth = currentHealth;
+            _damage = 1;
         }
 
-        public int currentHealth {
-            get { return _currentHealth; }
-            set { _currentHealth = value; }
-        }
-
-        public int damageDealt {
-            get { return _damage; }
-            set { _damage = value; }
-        }
+        public Dictionary<string, int> stats = new Dictionary<string, int>()
+        {
+            { "Strength", 8 },
+            { "Constitution", 8 },
+            { "Dexterity", 8 },
+            { "Intelligence", 8 },
+            { "Wisdom", 8 },
+            { "Charisma", 8 }
+        };
 
         public void TakeDamage(int damage) {
-            if ((currentHealth - damage) <= 0) {
-                currentHealth = 0;
+            if ((CurrentHealth - damage) <= 0) {
+                CurrentHealth = 0;
             }
             else {
-                currentHealth -= damage;
+                CurrentHealth -= damage;
             }
         }
 
         public void Heal(int healing) {
-            if ((currentHealth + healing) >= maxHealth) {
-                currentHealth = maxHealth;
+            if ((CurrentHealth + healing) >= MaximumHealth) {
+                CurrentHealth = MaximumHealth;
             } 
             else {
-                currentHealth += healing;
+                CurrentHealth += healing;
             }
+        }
+
+        public void ChangeStat(string statName, int statNumber) {
+            if (stats.ContainsKey(statName)) { 
+                stats[statName] = statNumber;
+            }
+        }
+
+        public int DoDamage() {
+            if (WeaponItem != null) {
+                return stats["Strength"] + WeaponItem.ProficiencyBonus;
+            }
+            return stats["Strength"];
         }
     }
 }
